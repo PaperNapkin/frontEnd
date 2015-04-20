@@ -8,18 +8,31 @@
 
     <!-- Literally Canvas -->
     <script src="js/literallycanvas.js"></script>
+
+    
   </head>
   <body>
     <!-- where the widget goes. you can do CSS to it. -->
+    
     <div class="literally"></div>
 
+      <!--
+      <br><br>
+      <div class="literally two"></div>
+      -->
+
     <!-- kick it off -->
+
+    <!-- Script to pull and push canvases -->
+    <script type="text/javascript" src="js/script.js"></script>
+
     <script>
         // Look ma, no jQuery!
         LC.init(
             document.getElementsByClassName('literally')[0],
             {imageURLPrefix: 'img'}
         );
+        //setImageSize(100,100);
 
         /* or if you just love jQuery,
             $('.literally').literallycanvas({imageURLPrefix: '/static/img'})

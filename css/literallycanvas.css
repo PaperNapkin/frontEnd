@@ -1,7 +1,7 @@
 .literally{
 	position:relative;
-	background-color:#ddd;
-	min-height:400px;
+	background-color:#FFF;
+	height: 100%;
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
 	-khtml-user-select:none;
@@ -23,7 +23,7 @@
 	left:0;
 	bottom:0;
 	width:60px;
-	background-color:#aaa
+	background-color:#d3d3d3;
 }
 .literally .lc-drawing{
 	top:0;
@@ -49,7 +49,7 @@
 .literally .lc-picker{
 	z-index:2;
 	border-right:
-	1px solid #555
+	3px solid #FFF;
 }
 .literally .lc-picker .toolbar-button{
 	height:30px;
@@ -99,8 +99,8 @@
 .literally .lc-picker .thin-button{
 	width:30px;
 	height:30px;
-	border-bottom:1px solid #555;
-	border-right:1px solid #555;
+	border-bottom:3px solid #FFF;
+	border-right: 3px solid #FFF;
 	cursor:pointer;
 	float:left;
 	position:relative
@@ -112,7 +112,7 @@
 .literally .lc-picker .fat-button{
 	clear:both;
 	width:100%;
-	border-bottom:1px solid #555
+	border-bottom:3px solid #FFF
 }
 .literally .lc-picker .lc-pick-tool img,.literally .lc-picker .lc-undo img,.literally .lc-picker .lc-redo img,.literally .lc-picker .lc-zoom-in img,.literally .lc-picker .lc-zoom-out img{
 	position:absolute;
@@ -122,7 +122,7 @@
 	left:0;margin:auto;width:80%
 }
 .literally .lc-picker .color-well-label{
-	border-bottom:1px solid #555;
+	border-bottom:3px solid #FFF;
 	padding-bottom:4px;font-size:10px;
 	line-height:1.2em;height:auto
 }
@@ -134,7 +134,7 @@
 	z-index:2;
 	width:30px;
 	height:30px;
-	border:1px solid #555;
+	border:3px solid #FFF;
 	clear:both;
 	margin:auto;
 	overflow:visible
@@ -158,7 +158,7 @@
 	left:39px;
 	bottom:-30px;
 	background-color:white;
-	border:1px solid #555
+	border:3px solid #FFF;
 }
 .literally .lc-picker .color-picker-popup .color-row{
 	clear:both
@@ -171,7 +171,7 @@
 	float:left
 }
 .literally .lc-picker .color-picker-popup .color-row .color-cell:hover,.literally .lc-picker .color-picker-popup .color-row .color-cell.selected{
-	border:1px solid #555;
+	border:3px solid #FFF;
 	line-height:18px
 }
 .literally .lc-picker .color-picker-popup .color-row .color-cell.transparent-cell{
@@ -179,10 +179,10 @@
 }
 .literally .lc-options{
 	z-index:1;
-	border-top:1px solid #555
+	border-top:3px solid #FFF
 }
 .literally .lc-options .basic-button{
-	border:1px solid #555;
+	border:3px solid #FFF;
 	margin:0 0 5px 0;
 	padding:5px 5px 4px 5px
 }
@@ -228,7 +228,7 @@
 	opacity:0.5
 }
 .literally .lc-options .square-button{
-	border:1px solid #555;
+	border:3px solid #FFF;
 	margin:0 0 5px 0;
 	padding:5px 5px 4px 5px;
 	width:44px;
@@ -303,6 +303,29 @@
 	margin:0 0.5em 0 0.5em
 }
 
+
+/* svg export demo css */
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 0;
+	background-color: gray;
+	height: 2000px;
+}
+.fs-container {
+	/* width: 768px; */
+	width: 100%;
+	margin: auto;
+	/* margin-top: 50px; */
+}
+.literally {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.literally img.background, .literally > canvas {
+	position: absolute;
+}
 
 
 
