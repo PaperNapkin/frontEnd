@@ -15,6 +15,8 @@
     <!-- where the widget goes. you can do CSS to it. -->
     
     <div class="literally"></div>
+    <button onclick="printJson()"></button>
+    <button onclick="loadJson()"></button>
 
       <!--
       <br><br>
@@ -28,10 +30,49 @@
 
     <script>
         // Look ma, no jQuery!
-        LC.init(
+        var temp = LC.init(
             document.getElementsByClassName('literally')[0],
             {imageURLPrefix: 'img'}
         );
+
+        var string = null;
+
+        function printJson() {
+            string = temp.getSnapshotJSON();
+            console.log(temp.getSnapshotJSON());
+        }
+
+        function loadJson() {
+            //clear canvas by calling temp object
+            temp.loadSnapshotJSON(string);
+        }
+
+
+        // rotate
+        /*var c = document.getElementsByClassName('literally')[0];
+        context.rect(20,20,150,100);
+        context.stroke();
+
+        context.clearRect(0,0,canvas.width,canvas.height);
+
+    // save the unrotated context of the canvas so we can restore it later
+    // the alternative is to untranslate & unrotate after drawing
+        context.save();
+
+    // move to the center of the canvas
+        //context.translate(canvas.width/2,canvas.height/2);
+
+    // rotate the canvas to the specified degrees
+        context.rotate(45*Math.PI/180);
+
+    // draw the image
+    // since the context is rotated, the image will be rotated also
+        context.drawImage(image,-image.width/2,-image.width/2);
+
+    // we’re done with the rotating so restore the unrotated context
+        context.restore();
+
+
         //setImageSize(100,100);
 
         /* or if you just love jQuery,
