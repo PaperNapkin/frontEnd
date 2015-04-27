@@ -110,6 +110,7 @@
       }
 
       function zoomJson() {
+        var z = Math.floor(Math.random() * 10);
         temp.zoom(10);
       }
 
@@ -138,16 +139,7 @@
             temp.loadSnapshotJSON(string);
         }
 
-        function panJson() {
-            // x and y between -100 and 100
-            var x = Math.floor(Math.random() * 201) - 100;
-            var y = Math.floor(Math.random() * 201) - 100;
-            temp.pan(x, y);
-        }
-
-        function zoomJson() {
-            temp.zoom(10);
-        }
+        
 
         //var x = 100;
         //var y = 100;
