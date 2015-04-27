@@ -9,14 +9,25 @@
     <!-- Literally Canvas -->
     <script src="js/literallycanvas.js"></script>
 
+    <!-- jQueryRotate -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jQueryRotate.js" type="text/javascript"></script>
+
     
   </head>
   <body>
     <!-- where the widget goes. you can do CSS to it. -->
     
     <div class="literally"></div>
-    <button onclick="printJson()"></button>
-    <button onclick="loadJson()"></button>
+    <button onclick="getJson()">PrintJSON</button>
+    <button onclick="loadJson()">loadJSON</button>
+    <button onclick="clearJson()">clearJSON</button>
+    <button onclick="panJson()">panJSON</button>
+    <button onclick="rotateJson()">rotateJSON</button>
+    <button onclick="zoomJson()">zoomJSON</button>
+    <!--<button onclick="getCanvasA()">A</button>
+    <button onclick="getCanvasB()">B</button>
+    <button onclick="combine()">combineJSON</button>-->
 
       <!--
       <br><br>
@@ -29,23 +40,175 @@
     <script type="text/javascript" src="js/script.js"></script>
 
     <script>
+      rulesObject = 
+      {
+          "rotate": 80,
+          "pan": true,
+          "zoom": true,
+          "pencil": true,
+          "eraser": false,
+          "line": false,
+          "rect": false,
+          "text": false,
+          "eyeDrop": false,
+          "keyBoardShortcuts": false
+      };
+      
+      var pencil = rulesObject["pencil"];
+      var eraser = rulesObject["eraser"];
+      var line = rulesObject["line"];
+      var rect = rulesObject["rect"];
+      var text = rulesObject["text"];
+      var eyeDrop = rulesObject["eyeDrop"];;
+
+      var toolsArray = [];
+      if (pencil == true) {
+          toolsArray.push(LC.tools.Pencil);
+      }
+      if (eraser == true) {
+          toolsArray.push(LC.tools.Eraser);
+      }
+      if (line == true) {
+          toolsArray.push(LC.tools.Line);
+      }
+      if (rect == true) {
+          toolsArray.push(LC.tools.Rect);
+      }
+      if (text == true) {
+          toolsArray.push(LC.tools.Text);
+      }
+      if (eyeDrop == true) {
+          toolsArray.push(LC.tools.Eyedropper);
+      }
+
+      var temp = LC.init(
+            document.getElementsByClassName('literally')[0],
+            {
+              /*backgroundShapes: [
+                LC.createShape(
+                  'Text', {x:200, y:200, text:"background", font: "bold 12px Helvetica"}
+                )
+              ],*/
+              imageURLPrefix: 'img',
+              keyboardShortcuts: false,
+              tools: toolsArray
+            }
+      );
+
+      if (rulesObject["pan"] == true) {
+        panJson();
+      }
+      if (rulesObject["zoom"] == true) {
+        zoomJson();
+      }
+
+      function panJson() {
+        // x and y between -100 and 100
+        var x = Math.floor(Math.random() * 201) - 100;
+        var y = Math.floor(Math.random() * 201) - 100;
+        temp.pan(x, y);
+      }
+
+      function zoomJson() {
+        temp.zoom(10);
+      }
+
+      console.log(temp);
+
+        
         // Look ma, no jQuery!
-        var temp = LC.init(
+        /*var temp = LC.init(
             document.getElementsByClassName('literally')[0],
             {imageURLPrefix: 'img'}
-        );
+        );*/
 
         var string = null;
 
-        function printJson() {
+        function getJson() {
             string = temp.getSnapshotJSON();
-            console.log(temp.getSnapshotJSON());
+            console.log(string);
+        }
+
+        function clearJson() {
+            temp.clear();
         }
 
         function loadJson() {
-            //clear canvas by calling temp object
+            //load old drawing
             temp.loadSnapshotJSON(string);
         }
+
+        function panJson() {
+            // x and y between -100 and 100
+            var x = Math.floor(Math.random() * 201) - 100;
+            var y = Math.floor(Math.random() * 201) - 100;
+            temp.pan(x, y);
+        }
+
+        function zoomJson() {
+            temp.zoom(10);
+        }
+
+        //var x = 100;
+        //var y = 100;
+        var angle = 45;
+
+
+        function rotateJson() {
+            //canvas = document.getElementsByClassName('lc-drawing')[0];
+            //canvas.rotate(45);
+            $('canvas').rotate(45);
+
+            /*console.log(canvasA);
+            var canvasB = $('.lc-drawing').append('<canvas width="1105" height="369" style="width: 1105px; height: 369px; background-color: transparent;"></canvas>'); 
+            LC.util.combineCanvases(canvasA, canvasB); */
+
+            /*var canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 400;
+            console.log(canvas);
+            var context = canvas.getContext("2d");
+       
+            // save the current co-ordinate system 
+            // before we screw with it
+            context.save(); 
+
+            // move to the middle of where we want to draw our image
+            //context.translate(x, y);
+
+            // rotate around that point, converting our 
+            // angle from degrees to radians 
+            context.rotate(45);
+            //canvas.loadSnapshotJSON(string);
+
+            // draw it up and to the left by half the width
+            // and height of the image 
+            context.rect(20,20,150,100);
+            context.stroke();
+            //context.drawImage(string, -(string.width/2), -(string.height/2));
+
+            // and restore the co-ords to how they were when we began
+            context.restore(); */
+        }
+        /*var canvasA = null;
+        var canvasB = null;
+
+        function getCanvasA() {
+          canvasA = temp.getImage();
+          console.log(canvasA);
+        }
+
+        function getCanvasB() {
+          canvasB = temp.getImage();
+          console.log(canvasB);
+        }
+
+        function combine() {
+          var canvasNew = LC.util.combineCanvases(canvasA, canvasB); 
+          console.log(canvasA);
+          console.log(canvasB);
+          console.log(canvasNew);
+        }*/
 
 
         // rotate
@@ -75,7 +238,7 @@
 
         //setImageSize(100,100);
 
-        /* or if you just love jQuery,
+         or if you just love jQuery,
             $('.literally').literallycanvas({imageURLPrefix: '/static/img'})
         */
     </script>
